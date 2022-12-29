@@ -1,0 +1,45 @@
+class Solution {
+public:
+ bool static cmp(vector<int>&a,vector<int>&b)
+    {
+        if(a[0]<b[0])return true;
+        else if(a[0]==b[0])
+        {
+            return a[1]<b[1];
+        }
+        return false;
+        
+    }
+    int findLongestChain(vector<vector<int>>& pairs) {
+       sort(pairs.begin(),pairs.end(),cmp);
+       int n=pairs.size();
+       vector<int>dp(n,1); 
+       int ans=1;
+       for(auto x:pairs)
+        {
+            for(auto y:x)
+            {
+                cout<<y<<" ";
+            }
+            cout<<endl;
+        }
+       for(int i=1;i<n;i++)
+       {
+           int Max=0;
+           for(int j=i-1;j>=0;j--)
+           {
+               if(pairs[i][0]>pairs[j][1])
+               {
+                   Max=max(Max,dp[j]);
+               }
+           }
+           dp[i]+=Max;
+           ans=max(ans,dp[i]);
+       }
+       for(auto x:dp)
+       {
+           cout<<x<<" ";
+       }
+       return ans;
+    }
+};
