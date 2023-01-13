@@ -67,7 +67,7 @@ class Solution
         // head=curr;
         if(next!=NULL)
         {
-            head->next=reverselist(next,k);
+            start->next=reverselist(next,k);
         }
         return prev;
         
